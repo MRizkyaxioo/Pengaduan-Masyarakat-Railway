@@ -1,5 +1,7 @@
 [phases.setup]
 aptPkgs = [
+  "php",
+  "php-cli",
   "php-mysql",
   "php-xml",
   "php-mbstring",
@@ -18,5 +20,5 @@ cmds = [
   "php artisan view:cache"
 ]
 
-[phases.start]
+[start]
 cmd = "php -d variables_order=EGPCS -S 0.0.0.0:8080 -t public"
