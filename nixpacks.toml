@@ -15,10 +15,13 @@ aptPkgs = [
 [phases.build]
 cmds = [
   "composer install --no-dev --optimize-autoloader",
-  "npm ci --prefer-offline --no-audit --production=false",
-  "npm run build",
+  "npm install",
+  "npm run build"
+]
+
+[phases.start]
+cmds = [
   "php artisan migrate --force",
-  "php artisan db:seed --force",
   "php artisan config:cache",
   "php artisan route:cache",
   "php artisan view:cache"
