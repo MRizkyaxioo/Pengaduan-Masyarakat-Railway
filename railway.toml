@@ -2,5 +2,4 @@
 builder = "nixpacks"
 
 [deploy]
-startCommand = "php -S 0.0.0.0:8080 -t public"
-
+startCommand = "php -d variables_order=EGPCS -S 0.0.0.0:8080 -t public"
