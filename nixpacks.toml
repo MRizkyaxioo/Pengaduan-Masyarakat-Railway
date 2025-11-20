@@ -15,7 +15,7 @@ aptPkgs = [
 [phases.build]
 cmds = [
   "composer install --no-dev --optimize-autoloader",
-  "npm install",
+  "npm ci --prefer-offline --no-audit --production=false",
   "npm run build",
   "php artisan migrate --force",
   "php artisan db:seed --force",
@@ -26,4 +26,3 @@ cmds = [
 
 [start]
 cmd = "php -d variables_order=EGPCS -S 0.0.0.0:8080 server.php"
-
