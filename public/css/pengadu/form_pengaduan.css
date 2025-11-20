@@ -1,0 +1,522 @@
+body {
+  background: linear-gradient(135deg, #FFD700 0%, #FFA500 50%, #FF8C00 100%);
+  min-height: 100vh;
+  position: relative;
+  padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.logo {
+  width: 200px;
+  height: 150px;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+}
+
+.form-container {
+  max-width: 700px;
+  margin: 30px auto 0;
+  border: 2px solid #B8860B;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+}
+
+.form-header {
+  background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+  color: #2C1810;
+  padding: 20px;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  margin: 0;
+  border-radius: 0;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.btn-lapor {
+  background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+  color: #2C1810;
+  border: 2px solid #B8860B;
+  font-weight: bold;
+  padding: 15px 30px;
+  border-radius: 12px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 25px rgba(255, 193, 7, 0.4);
+}
+
+.btn-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.back-btn {
+  padding: 15px 30px;
+  background: white;
+  border: 2px solid #B8860B;
+  border-radius: 12px;
+  text-decoration: none;
+  color: #B8860B;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 25px rgba(184, 134, 11, 0.4);
+  font-size: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.back-btn:hover {
+  background: #FFFACD;
+  box-shadow: 0 12px 35px rgba(255, 193, 7, 0.6);
+  transform: translateY(-3px);
+  color: #8B4513;
+}
+
+.btn-lapor:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 35px rgba(255, 193, 7, 0.6);
+  background: linear-gradient(135deg, #FFA500 0%, #FF8C00 100%);
+  color: #2C1810;
+}
+
+.btn-lapor:active, .back-btn:active {
+  transform: translateY(-1px);
+}
+
+select, textarea, input[type="text"], input[type="date"], input[type="file"] {
+  width: 100%;
+  border: 2px solid #F0E68C;
+  padding: 12px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.9);
+  color: #2C1810;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+select:focus, textarea:focus, input[type="text"]:focus,
+input[type="date"]:focus, input[type="file"]:focus {
+  border-color: #FFD700;
+  box-shadow: 0 5px 20px rgba(255, 193, 7, 0.3);
+  background: #FFFACD;
+  outline: none;
+}
+
+.form-label {
+  color: #8B4513;
+  font-weight: 600;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 20px;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 20px;
+  border-radius: 15px;
+  border: 2px solid #B8860B;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 25px;
+  margin-bottom: auto;
+}
+
+.header h3 {
+  color: #B8860B;
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.header p {
+  color: #8B4513;
+  font-size: 16px;
+  margin: 0;
+}
+
+.form-content {
+  padding: 30px;
+  background: white;
+  border-radius: 0 0 18px 18px;
+}
+
+.form-container:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+}
+
+input[type="file"] {
+  padding: 8px;
+  cursor: pointer;
+}
+
+input[type="file"]::-webkit-file-upload-button {
+  background: linear-gradient(135deg, #FFD700, #FFA500);
+  border: 1px solid #B8860B;
+  border-radius: 6px;
+  padding: 8px 12px;
+  margin-right: 10px;
+  color: #2C1810;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+input[type="file"]::-webkit-file-upload-button:hover {
+  background: linear-gradient(135deg, #FFA500, #FF8C00);
+}
+
+/* ============================================
+   STYLING UNTUK SEARCH LOCATION
+   ============================================ */
+
+.location-search-container {
+  margin-bottom: 15px;
+}
+
+.search-wrapper {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.location-search-input {
+  flex: 1;
+  padding: 12px 15px;
+  border: 2px solid #F0E68C;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.location-search-input:focus {
+  border-color: #FFD700;
+  box-shadow: 0 5px 20px rgba(255, 193, 7, 0.3);
+  background: #FFFACD;
+  outline: none;
+}
+
+.btn-search-location {
+  background: linear-gradient(135deg, #FF9800 0%, #F57C00 100%);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  box-shadow: 0 12px 35px rgba(251, 194, 24, 0.6);
+}
+
+.btn-search-location:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 35px rgba(255, 193, 7, 0.6);
+  background: linear-gradient(135deg, #FF9800 0%, #F57C00 100%);
+}
+
+.btn-search-location:active {
+  transform: translateY(0);
+}
+
+.btn-search-location:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.search-results {
+  background: white;
+  border: 2px solid #F0E68C;
+  border-radius: 8px;
+  max-height: 250px;
+  overflow-y: auto;
+  display: none;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.search-results.active {
+  display: block;
+}
+
+.search-result-item {
+  padding: 12px 15px;
+  cursor: pointer;
+  border-bottom: 1px solid #F0E68C;
+  transition: all 0.2s ease;
+}
+
+.search-result-item:last-child {
+  border-bottom: none;
+}
+
+.search-result-item:hover {
+  background: #FFFACD;
+}
+
+.search-result-item .result-name {
+  font-weight: 600;
+  color: #8B4513;
+  margin-bottom: 3px;
+}
+
+.search-result-item .result-address {
+  font-size: 13px;
+  color: #B8860B;
+}
+
+.search-no-results {
+  padding: 15px;
+  text-align: center;
+  color: #8B4513;
+  font-size: 14px;
+}
+
+/* ============================================
+   STYLING UNTUK LEAFLET MAP
+   ============================================ */
+
+#map {
+  height: 400px;
+  width: 100%;
+  border-radius: 10px;
+  border: 2px solid #F0E68C;
+  margin-bottom: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  z-index: 1;
+}
+
+#map:hover {
+  box-shadow: 0 8px 25px rgba(255, 193, 7, 0.3);
+  border-color: #FFD700;
+}
+
+.location-info {
+  background: rgba(255, 215, 0, 0.1);
+  padding: 15px;
+  border-radius: 8px;
+  border: 1px solid #F0E68C;
+  margin-bottom: 15px;
+  animation: fadeIn 0.5s ease;
+}
+
+.location-info p {
+  margin: 5px 0;
+  color: #8B4513;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.location-info strong {
+  color: #B8860B;
+  font-weight: 600;
+}
+
+.map-instructions {
+  background: #FFFACD;
+  padding: 12px 15px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  border-left: 4px solid #FFD700;
+  animation: slideInLeft 0.5s ease;
+}
+
+.map-instructions p {
+  margin: 0;
+  color: #8B4513;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.btn-get-location {
+  background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 15px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+}
+
+.btn-get-location:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(76, 175, 80, 0.4);
+  background: linear-gradient(135deg, #45a049 0%, #3d8b40 100%);
+}
+
+.btn-get-location:active {
+  transform: translateY(0);
+}
+
+.btn-get-location:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.leaflet-popup-content-wrapper {
+  border-radius: 8px;
+  padding: 5px;
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.leaflet-popup-content {
+  margin: 10px;
+  font-size: 13px;
+  color: #2C1810;
+}
+
+.leaflet-popup-tip {
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.geocoding-loading {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(255, 215, 0, 0.9);
+  color: #2C1810;
+  padding: 8px 15px;
+  border-radius: 5px;
+  font-size: 12px;
+  font-weight: 600;
+  z-index: 1000;
+  animation: pulse 1.5s infinite;
+}
+
+/* Animasi */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .logo {
+    position: static;
+    display: block;
+    margin: 20px auto;
+    width: 150px;
+    height: 120px;
+  }
+
+  .header {
+    margin-top: 20px;
+  }
+
+  .form-container {
+    margin-top: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  .btn-container {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .btn-lapor, .back-btn {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+  }
+
+  #map {
+    height: 300px;
+  }
+  
+  .map-instructions {
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+  
+  .btn-get-location {
+    width: 100%;
+    justify-content: center;
+    margin-bottom: 12px;
+  }
+  
+  .location-info p {
+    font-size: 13px;
+  }
+
+  .search-wrapper {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .btn-search-location {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  #map {
+    height: 250px;
+  }
+}
+
+.leaflet-control-attribution {
+  font-size: 10px;
+  background: rgba(255, 255, 255, 0.8) !important;
+}
+
+.leaflet-control-zoom {
+  border: 2px solid #F0E68C !important;
+  border-radius: 8px !important;
+}
+
+.leaflet-control-zoom a {
+  background: rgba(255, 255, 255, 0.95) !important;
+  color: #B8860B !important;
+  font-weight: bold !important;
+}
+
+.leaflet-control-zoom a:hover {
+  background: #FFFACD !important;
+}

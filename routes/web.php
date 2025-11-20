@@ -1,0 +1,111 @@
+<?php
+
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DashboardAdminController;
+use App\Http\Controllers\DashboardPengaduController;
+use App\Http\Controllers\PengurusController;
+use App\Http\Controllers\HasilPengaduanController;
+use App\Http\Controllers\AuthAdminController;
+use App\Http\Controllers\AuthPengaduController;
+use App\Http\Controllers\PengaduanController;
+use App\Http\Controllers\AuthPengurusController;
+use App\Http\Middleware\RedirectIfNotPengurus;
+use App\Http\Middleware\RedirectIfNotAdmin;
+use App\Http\Middleware\RedirectIfNotPengadu;
+use Illuminate\Support\Facades\Route;
+
+
+Route::redirect('/', '/dashboard');
+
+
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.guest');
+
+
+// Register
+Route::get('/register-pengadu', [AuthPengaduController::class, 'showRegisterForm'])->name('pengadu.register');
+Route::post('/register-pengadu', [AuthPengaduController::class, 'register']);
+
+// Login
+// Pengadu
+Route::get('/login-pengadu', [AuthPengaduController::class, 'showLoginForm'])->name('pengadu.login');
+Route::post('/login-pengadu', [AuthPengaduController::class, 'login']);
+
+// Admin
+Route::get('/login-admin', [AuthAdminController::class, 'showLoginForm'])->name('admin.login');
+Route::post('/login-admin', [AuthAdminController::class, 'login']);
+
+// Pengurus
+Route::get('/login-pengurus', [AuthPengurusController::class, 'showLoginForm'])->name('pengurus.login');
+Route::post('/login-pengurus', [AuthPengurusController::class, 'login']);
+
+// Logout
+Route::post('/logout-pengadu', [AuthPengaduController::class, 'logout'])->name('pengadu.logout');
+Route::post('/logout-admin', [AuthAdminController::class, 'logout'])->name('admin.logout');
+Route::post('/logout-pengurus', [AuthPengurusController::class, 'logout'])->name('pengurus.logout');
+
+// Pengadu
+Route::middleware(RedirectIfNotPengadu::class)->group(function () {
+    Route::get('/dashboard-pengadu', [App\Http\Controllers\DashboardPengaduController::class, 'index'])->name('pengadu.dashboard');
+    Route::get('/pengaduan/create', [App\Http\Controllers\HasilPengaduanController::class, 'create'])->name('pengadu.pengaduan.create');
+    Route::post('/pengaduan/store', [App\Http\Controllers\HasilPengaduanController::class, 'store'])->name('pengadu.pengaduan.store');
+    Route::get('/form-pengadu', [HasilPengaduanController::class, 'create'])->name('pengadu.form');
+    Route::get('/riwayat', [DashboardPengaduController::class, 'history'])->name('pengadu.riwayat');
+    // Route untuk menampilkan form ubah password
+Route::get('/ubah-password', [AuthPengaduController::class, 'showChangePasswordForm'])
+    ->name('pengadu.change-password.form');
+
+// Route untuk memproses ubah password
+Route::post('/ubah-password', [AuthPengaduController::class, 'changePassword'])
+    ->name('pengadu.change-password');
+
+    // Halaman edit profil pengadu
+Route::get('/profil', [AuthPengaduController::class, 'editProfile'])->name('pengadu.edit-profil');
+Route::post('/pengadu/update-profil', [AuthPengaduController::class, 'updateProfile'])->name('pengadu.update-profil');
+
+
+});
+
+
+// Pengurus
+Route::middleware(RedirectIfNotPengurus::class)->group(function () {
+Route::get('/dashboard-pengurus', [PengurusController::class, 'index'])->name('pengurus.dashboard');
+Route::put('/pengurus/update-status/{id}', [PengurusController::class, 'updateStatus'])
+    ->name('pengurus.updateStatus');
+Route::get('/pengurus/hasil/{id}', [PengurusController::class, 'show'])
+    ->name('pengurus.hasil.detail');
+ Route::get('/pengurus/change-password', [AuthPengurusController::class, 'showChangePasswordForm'])
+        ->name('pengurus.change-password.form');
+    Route::post('/pengurus/change-password', [AuthPengurusController::class, 'changePassword'])
+        ->name('pengurus.change-password');
+});
+
+
+// Admin
+Route::middleware(RedirectIfNotAdmin::class)->group(function () {
+    Route::get('/kategori', [PengaduanController::class, 'index'])->name('pengaduan.index');
+    Route::get('/kategori/create', [PengaduanController::class, 'create'])->name('pengaduan.create');
+    Route::post('/kategori', [PengaduanController::class, 'store'])->name('pengaduan.store');
+    Route::get('/kategori/{id}/edit', [PengaduanController::class, 'edit'])->name('pengaduan.edit');
+    Route::put('/kategori/{id}', [PengaduanController::class, 'update'])->name('pengaduan.update');
+    Route::delete('/kategori/{id}', [PengaduanController::class, 'destroy'])->name('pengaduan.destroy');
+    Route::post('/admin/pengaduan/{id}/update-kategori', [DashboardAdminController::class, 'updateKategori'])
+    ->name('admin.updateKategori');
+    Route::post('/admin/pengaduan/{id}/update-keterangan', [DashboardAdminController::class, 'updateKeterangan'])
+    ->name('admin.updateKeterangan');
+    Route::delete('/admin/pengaduan/{id}', [HasilPengaduanController::class, 'destroy'])->name('admin.destroy');
+
+    Route::get('/admin/change-password', [AuthAdminController::class, 'showChangePasswordForm'])->name('admin.change-password.form');
+    Route::post('/admin/change-password', [AuthAdminController::class, 'changePassword'])->name('admin.change-password');
+
+    Route::get('/dashboard-admin', [DashboardAdminController::class, 'index'])->name('admin.dashboard');
+    Route::post('/admin/{id}/status', [DashboardAdminController::class, 'updateStatus'])->name('admin.updateStatus');
+    Route::get('/admin/{id}', [DashboardAdminController::class, 'show'])->name('admin.show');
+
+
+    Route::get('/pengurus', [AuthPengurusController::class, 'index'])->name('pengurus.index');
+    Route::get('/pengurus/create', [AuthPengurusController::class, 'create'])->name('pengurus.create');
+    Route::post('/pengurus', [AuthPengurusController::class, 'store'])->name('pengurus.store');
+});
+
+
+
